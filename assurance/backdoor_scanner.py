@@ -96,34 +96,66 @@ def _suspicion_level(asr: float) -> str:
 # Test-image loader
 # ────────────────────────────────────────────────────────────────────────────
 
-def _load_test_images(n_images: int = 30) -> List[np.ndarray]:
+def _label_from_path(p: Path) -> Optional[int]:
+    """Class index from a data/clean/<class>/ folder or a canary_<class>_NN.png name."""
+    if p.parent.name in config.CLASS_NAMES:
+        return config.CLASS_NAMES.index(p.parent.name)
+    for idx, name in enumerate(config.CLASS_NAMES):
+        if p.stem.startswith(f"canary_{name}_"):
+            return idx
+    return None
+
+
+def _load_test_images(
+    n_images: int = 90,
+    exclude_class: Optional[int] = None,
+) -> List[Tuple[np.ndarray, Optional[int]]]:
     """
-    Load up to n_images test images from the clean dataset or canary set.
-    Falls back to random noise if nothing is found.
+    Load up to n_images labelled test images from the clean dataset or canary
+    set, drawn round-robin across classes so no single class dominates.
+    Images of `exclude_class` (the target class) are skipped: a correct
+    prediction on them would be counted as a trigger success.
+    Falls back to random noise (label None) if nothing is found.
     """
-    images = []
+    by_class: Dict[int, List[Path]] = {}
     for src_dir in [config.DATA_CLEAN_DIR, config.CANARY_DIR]:
-        if len(images) >= n_images:
-            break
         src = Path(src_dir)
         if not src.exists():
             continue
         for p in sorted(src.rglob("*.png")):
-            if len(images) >= n_images:
-                break
-            try:
-                arr = np.array(Image.open(p).convert("RGB"))
-                images.append(arr)
-            except Exception:
-                pass
+            label = _label_from_path(p)
+            if label is None or label == exclude_class:
+                continue
+            by_class.setdefault(label, []).append(p)
+
+    # Interleave classes: class0[0], class1[0], …, class0[1], class1[1], …
+    paths: List[Tuple[Path, int]] = []
+    queues = [(label, list(ps)) for label, ps in sorted(by_class.items())]
+    while len(paths) < n_images and any(ps for _, ps in queues):
+        for label, ps in queues:
+            if ps and len(paths) < n_images:
+                paths.append((ps.pop(0), label))
+
+    images: List[Tuple[np.ndarray, Optional[int]]] = []
+    for p, label in paths:
+        try:
+            images.append((np.array(Image.open(p).convert("RGB")), label))
+        except Exception:
+            pass
 
     if not images:
         # Synthetic fallback
         rng = np.random.RandomState(42)
         for _ in range(n_images):
-            images.append(rng.randint(0, 256, (config.IMAGE_SIZE, config.IMAGE_SIZE, 3), dtype=np.uint8))
+            arr = rng.randint(0, 256, (config.IMAGE_SIZE, config.IMAGE_SIZE, 3), dtype=np.uint8)
+            images.append((arr, None))
 
     return images
+
+
+def _predict(model, img_arr: np.ndarray) -> int:
+    tensor = _TRANSFORM(Image.fromarray(img_arr)).unsqueeze(0)
+    return int(model(tensor).argmax(1).item())
 
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -133,7 +165,7 @@ def _load_test_images(n_images: int = 30) -> List[np.ndarray]:
 def scan_backdoor(
     model_path: str,
     target_class: int = config.BACKDOOR_TARGET,
-    n_test_images: int = 30,
+    n_test_images: int = 90,
     progress_callback=None,
 ) -> BackdoorScanResult:
     """
@@ -161,7 +193,26 @@ def scan_backdoor(
         model.eval()
 
         _prog("Loading test images", 10)
-        test_images = _load_test_images(n_test_images)
+        test_images = _load_test_images(n_test_images, exclude_class=target_class)
+
+        # Baseline: only images the model already handles correctly without a
+        # trigger (and does not already call the target class) can show a
+        # trigger-induced flip. Otherwise ASR measures accuracy, not the trigger.
+        with torch.no_grad():
+            eligible = []
+            for img_arr, label in test_images:
+                clean_pred = _predict(model, img_arr)
+                if clean_pred == target_class:
+                    continue
+                if label is not None and clean_pred != label:
+                    continue
+                eligible.append(img_arr)
+
+        if not eligible:
+            raise RuntimeError(
+                "No usable test images: the model misclassifies every "
+                "non-target test image even without a trigger."
+            )
 
         trigger_results = []
         total_positions = len(config.TRIGGER_CANDIDATES)
@@ -173,19 +224,15 @@ def scan_backdoor(
             example_saved = False
 
             with torch.no_grad():
-                for img_arr in test_images:
+                for img_arr in eligible:
                     triggered = apply_trigger(img_arr, position)
-                    pil_img = Image.fromarray(triggered)
-                    tensor  = _TRANSFORM(pil_img).unsqueeze(0)
-                    logits  = model(tensor)
-                    pred    = int(logits.argmax(1).item())
-                    if pred == target_class:
+                    if _predict(model, triggered) == target_class:
                         triggered_as_target += 1
                     if not example_saved:
                         result.example_images[position] = triggered
                         example_saved = True
 
-            asr = triggered_as_target / max(len(test_images), 1)
+            asr = triggered_as_target / len(eligible)
             is_suspicious = asr > config.SUSPICION_THRESHOLD
             trigger_results.append(TriggerResult(
                 position=position,
