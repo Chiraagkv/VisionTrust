@@ -1,0 +1,152 @@
+[
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_airplane_00.png",
+    "label": "airplane",
+    "class_idx": 0
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_airplane_01.png",
+    "label": "airplane",
+    "class_idx": 0
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_airplane_02.png",
+    "label": "airplane",
+    "class_idx": 0
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_automobile_00.png",
+    "label": "automobile",
+    "class_idx": 1
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_automobile_01.png",
+    "label": "automobile",
+    "class_idx": 1
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_automobile_02.png",
+    "label": "automobile",
+    "class_idx": 1
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_bird_00.png",
+    "label": "bird",
+    "class_idx": 2
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_bird_01.png",
+    "label": "bird",
+    "class_idx": 2
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_bird_02.png",
+    "label": "bird",
+    "class_idx": 2
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_cat_00.png",
+    "label": "cat",
+    "class_idx": 3
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_cat_01.png",
+    "label": "cat",
+    "class_idx": 3
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_cat_02.png",
+    "label": "cat",
+    "class_idx": 3
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_deer_00.png",
+    "label": "deer",
+    "class_idx": 4
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_deer_01.png",
+    "label": "deer",
+    "class_idx": 4
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_deer_02.png",
+    "label": "deer",
+    "class_idx": 4
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_dog_00.png",
+    "label": "dog",
+    "class_idx": 5
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_dog_01.png",
+    "label": "dog",
+    "class_idx": 5
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_dog_02.png",
+    "label": "dog",
+    "class_idx": 5
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_frog_00.png",
+    "label": "frog",
+    "class_idx": 6
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_frog_01.png",
+    "label": "frog",
+    "class_idx": 6
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_frog_02.png",
+    "label": "frog",
+    "class_idx": 6
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_horse_00.png",
+    "label": "horse",
+    "class_idx": 7
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_horse_01.png",
+    "label": "horse",
+    "class_idx": 7
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_horse_02.png",
+    "label": "horse",
+    "class_idx": 7
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_ship_00.png",
+    "label": "ship",
+    "class_idx": 8
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_ship_01.png",
+    "label": "ship",
+    "class_idx": 8
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_ship_02.png",
+    "label": "ship",
+    "class_idx": 8
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_truck_00.png",
+    "label": "truck",
+    "class_idx": 9
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_truck_01.png",
+    "label": "truck",
+    "class_idx": 9
+  },
+  {
+    "filename": "/home/chiraagkv/Projects/SIH-SAFE-VISION/canary/canary_truck_02.png",
+    "label": "truck",
+    "class_idx": 9
+  }
+]
