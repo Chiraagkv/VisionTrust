@@ -1,0 +1,555 @@
+{
+  "dataset": "CIFAR10",
+  "n": 5000,
+  "target": "automobile",
+  "part_a": [
+    {
+      "variant": "patch",
+      "poison_rate": 0.01,
+      "method": "knn",
+      "poisoned": 50,
+      "flagged": 400,
+      "tp": 37,
+      "fp": 363,
+      "fn": 13,
+      "precision": 0.0925,
+      "recall": 0.74,
+      "f1": 0.16444444444444442,
+      "fpr": 0.07333333333333333,
+      "suggests_source_class": 0.8918918918918919,
+      "seconds": 79.74951910972595
+    },
+    {
+      "variant": "patch",
+      "poison_rate": 0.01,
+      "method": "linear_probe",
+      "poisoned": 50,
+      "flagged": 917,
+      "tp": 46,
+      "fp": 871,
+      "fn": 4,
+      "precision": 0.05016357688113413,
+      "recall": 0.92,
+      "f1": 0.0951396070320579,
+      "fpr": 0.17595959595959595,
+      "suggests_source_class": 0.8043478260869565,
+      "seconds": 0.8893117904663086
+    },
+    {
+      "variant": "patch",
+      "poison_rate": 0.05,
+      "method": "knn",
+      "poisoned": 250,
+      "flagged": 485,
+      "tp": 167,
+      "fp": 318,
+      "fn": 83,
+      "precision": 0.3443298969072165,
+      "recall": 0.668,
+      "f1": 0.45442176870748296,
+      "fpr": 0.06694736842105263,
+      "suggests_source_class": 0.9341317365269461,
+      "seconds": 77.82614636421204
+    },
+    {
+      "variant": "patch",
+      "poison_rate": 0.05,
+      "method": "linear_probe",
+      "poisoned": 250,
+      "flagged": 1194,
+      "tp": 180,
+      "fp": 1014,
+      "fn": 70,
+      "precision": 0.1507537688442211,
+      "recall": 0.72,
+      "f1": 0.2493074792243767,
+      "fpr": 0.21347368421052632,
+      "suggests_source_class": 0.8111111111111111,
+      "seconds": 0.8253047466278076
+    },
+    {
+      "variant": "patch",
+      "poison_rate": 0.1,
+      "method": "knn",
+      "poisoned": 500,
+      "flagged": 556,
+      "tp": 297,
+      "fp": 259,
+      "fn": 203,
+      "precision": 0.5341726618705036,
+      "recall": 0.594,
+      "f1": 0.5625,
+      "fpr": 0.057555555555555554,
+      "suggests_source_class": 0.9124579124579124,
+      "seconds": 74.61595606803894
+    },
+    {
+      "variant": "patch",
+      "poison_rate": 0.1,
+      "method": "linear_probe",
+      "poisoned": 500,
+      "flagged": 1389,
+      "tp": 295,
+      "fp": 1094,
+      "fn": 205,
+      "precision": 0.21238300935925125,
+      "recall": 0.59,
+      "f1": 0.3123345685547909,
+      "fpr": 0.2431111111111111,
+      "suggests_source_class": 0.8542372881355932,
+      "seconds": 1.344151496887207
+    },
+    {
+      "variant": "blend",
+      "poison_rate": 0.05,
+      "method": "knn",
+      "poisoned": 250,
+      "flagged": 364,
+      "tp": 12,
+      "fp": 352,
+      "fn": 238,
+      "precision": 0.03296703296703297,
+      "recall": 0.048,
+      "f1": 0.03908794788273615,
+      "fpr": 0.07410526315789474,
+      "suggests_source_class": 1.0,
+      "seconds": 73.95870518684387
+    },
+    {
+      "variant": "blend",
+      "poison_rate": 0.05,
+      "method": "linear_probe",
+      "poisoned": 250,
+      "flagged": 846,
+      "tp": 9,
+      "fp": 837,
+      "fn": 241,
+      "precision": 0.010638297872340425,
+      "recall": 0.036,
+      "f1": 0.016423357664233577,
+      "fpr": 0.17621052631578948,
+      "suggests_source_class": 0.8888888888888888,
+      "seconds": 0.6093418598175049
+    },
+    {
+      "variant": "clean_label",
+      "poison_rate": 0.02,
+      "method": "knn",
+      "poisoned": 100,
+      "flagged": 378,
+      "tp": 10,
+      "fp": 368,
+      "fn": 90,
+      "precision": 0.026455026455026454,
+      "recall": 0.1,
+      "f1": 0.04184100418410042,
+      "fpr": 0.07510204081632653,
+      "suggests_source_class": NaN,
+      "seconds": 73.76190614700317
+    },
+    {
+      "variant": "clean_label",
+      "poison_rate": 0.02,
+      "method": "linear_probe",
+      "poisoned": 100,
+      "flagged": 877,
+      "tp": 8,
+      "fp": 869,
+      "fn": 92,
+      "precision": 0.009122006841505131,
+      "recall": 0.08,
+      "f1": 0.016376663254861822,
+      "fpr": 0.1773469387755102,
+      "suggests_source_class": NaN,
+      "seconds": 0.6194643974304199
+    }
+  ],
+  "part_b": [
+    {
+      "threshold": 4,
+      "transform": "exact copy",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 4,
+      "transform": "PNG\u2192JPEG q=60",
+      "copies": 150,
+      "paired_with_source": 0.04,
+      "flagged_any": 0.04
+    },
+    {
+      "threshold": 4,
+      "transform": "gaussian noise \u03c3=4",
+      "copies": 150,
+      "paired_with_source": 0.4,
+      "flagged_any": 0.4
+    },
+    {
+      "threshold": 4,
+      "transform": "brightness \u00d71.2",
+      "copies": 150,
+      "paired_with_source": 0.41333333333333333,
+      "flagged_any": 0.41333333333333333
+    },
+    {
+      "threshold": 4,
+      "transform": "down/up-scale 50%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 4,
+      "transform": "centre crop 90%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 4,
+      "transform": "rotate 8\u00b0",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 4,
+      "transform": "horizontal flip",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 8,
+      "transform": "exact copy",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 8,
+      "transform": "PNG\u2192JPEG q=60",
+      "copies": 150,
+      "paired_with_source": 0.30666666666666664,
+      "flagged_any": 0.30666666666666664
+    },
+    {
+      "threshold": 8,
+      "transform": "gaussian noise \u03c3=4",
+      "copies": 150,
+      "paired_with_source": 0.8333333333333334,
+      "flagged_any": 0.8333333333333334
+    },
+    {
+      "threshold": 8,
+      "transform": "brightness \u00d71.2",
+      "copies": 150,
+      "paired_with_source": 0.6533333333333333,
+      "flagged_any": 0.6533333333333333
+    },
+    {
+      "threshold": 8,
+      "transform": "down/up-scale 50%",
+      "copies": 150,
+      "paired_with_source": 0.013333333333333334,
+      "flagged_any": 0.013333333333333334
+    },
+    {
+      "threshold": 8,
+      "transform": "centre crop 90%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 8,
+      "transform": "rotate 8\u00b0",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 8,
+      "transform": "horizontal flip",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 12,
+      "transform": "exact copy",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 12,
+      "transform": "PNG\u2192JPEG q=60",
+      "copies": 150,
+      "paired_with_source": 0.66,
+      "flagged_any": 0.66
+    },
+    {
+      "threshold": 12,
+      "transform": "gaussian noise \u03c3=4",
+      "copies": 150,
+      "paired_with_source": 0.9666666666666667,
+      "flagged_any": 0.9666666666666667
+    },
+    {
+      "threshold": 12,
+      "transform": "brightness \u00d71.2",
+      "copies": 150,
+      "paired_with_source": 0.8333333333333334,
+      "flagged_any": 0.8333333333333334
+    },
+    {
+      "threshold": 12,
+      "transform": "down/up-scale 50%",
+      "copies": 150,
+      "paired_with_source": 0.14666666666666667,
+      "flagged_any": 0.14666666666666667
+    },
+    {
+      "threshold": 12,
+      "transform": "centre crop 90%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 12,
+      "transform": "rotate 8\u00b0",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 12,
+      "transform": "horizontal flip",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 16,
+      "transform": "exact copy",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 16,
+      "transform": "PNG\u2192JPEG q=60",
+      "copies": 150,
+      "paired_with_source": 0.9,
+      "flagged_any": 0.9
+    },
+    {
+      "threshold": 16,
+      "transform": "gaussian noise \u03c3=4",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 16,
+      "transform": "brightness \u00d71.2",
+      "copies": 150,
+      "paired_with_source": 0.9266666666666666,
+      "flagged_any": 0.9266666666666666
+    },
+    {
+      "threshold": 16,
+      "transform": "down/up-scale 50%",
+      "copies": 150,
+      "paired_with_source": 0.54,
+      "flagged_any": 0.54
+    },
+    {
+      "threshold": 16,
+      "transform": "centre crop 90%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 16,
+      "transform": "rotate 8\u00b0",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 16,
+      "transform": "horizontal flip",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 24,
+      "transform": "exact copy",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 24,
+      "transform": "PNG\u2192JPEG q=60",
+      "copies": 150,
+      "paired_with_source": 0.9866666666666667,
+      "flagged_any": 0.9866666666666667
+    },
+    {
+      "threshold": 24,
+      "transform": "gaussian noise \u03c3=4",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 24,
+      "transform": "brightness \u00d71.2",
+      "copies": 150,
+      "paired_with_source": 0.98,
+      "flagged_any": 0.98
+    },
+    {
+      "threshold": 24,
+      "transform": "down/up-scale 50%",
+      "copies": 150,
+      "paired_with_source": 0.9533333333333334,
+      "flagged_any": 0.9533333333333334
+    },
+    {
+      "threshold": 24,
+      "transform": "centre crop 90%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 24,
+      "transform": "rotate 8\u00b0",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 24,
+      "transform": "horizontal flip",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 32,
+      "transform": "exact copy",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 32,
+      "transform": "PNG\u2192JPEG q=60",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 32,
+      "transform": "gaussian noise \u03c3=4",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 32,
+      "transform": "brightness \u00d71.2",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 32,
+      "transform": "down/up-scale 50%",
+      "copies": 150,
+      "paired_with_source": 1.0,
+      "flagged_any": 1.0
+    },
+    {
+      "threshold": 32,
+      "transform": "centre crop 90%",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 32,
+      "transform": "rotate 8\u00b0",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    },
+    {
+      "threshold": 32,
+      "transform": "horizontal flip",
+      "copies": 150,
+      "paired_with_source": 0.0,
+      "flagged_any": 0.0
+    }
+  ],
+  "natural_duplicates": [
+    {
+      "threshold": 4,
+      "original_images_in_groups_after_flood": 278,
+      "clean_dataset_groups": 0,
+      "clean_dataset_duplicates": 0,
+      "clean_dataset_duplicate_rate": 0.0,
+      "seconds": 6.131623029708862
+    },
+    {
+      "threshold": 8,
+      "original_images_in_groups_after_flood": 421,
+      "clean_dataset_groups": 0,
+      "clean_dataset_duplicates": 0,
+      "clean_dataset_duplicate_rate": 0.0,
+      "seconds": 6.1554505825042725
+    },
+    {
+      "threshold": 12,
+      "original_images_in_groups_after_flood": 541,
+      "clean_dataset_groups": 0,
+      "clean_dataset_duplicates": 0,
+      "clean_dataset_duplicate_rate": 0.0,
+      "seconds": 6.139490604400635
+    },
+    {
+      "threshold": 16,
+      "original_images_in_groups_after_flood": 655,
+      "clean_dataset_groups": 0,
+      "clean_dataset_duplicates": 0,
+      "clean_dataset_duplicate_rate": 0.0,
+      "seconds": 6.1056599617004395
+    },
+    {
+      "threshold": 24,
+      "original_images_in_groups_after_flood": 740,
+      "clean_dataset_groups": 1,
+      "clean_dataset_duplicates": 1,
+      "clean_dataset_duplicate_rate": 0.0002,
+      "seconds": 6.193427801132202
+    },
+    {
+      "threshold": 32,
+      "original_images_in_groups_after_flood": 754,
+      "clean_dataset_groups": 2,
+      "clean_dataset_duplicates": 2,
+      "clean_dataset_duplicate_rate": 0.0004,
+      "seconds": 6.163867950439453
+    }
+  ]
+}

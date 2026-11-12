@@ -1,0 +1,4 @@
+# Downloaded / generated artefacts — reproducible with the scripts in this folder
+data/
+models/
+__pycache__/

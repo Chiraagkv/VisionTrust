@@ -37,7 +37,8 @@ class AssuranceReport:
 
 LIMITATIONS = [
     "Behavioral trigger scanning is not universal — only visible patch-based triggers at candidate positions are tested.",
-    "Label-consistency disagreement is NOT proof of poisoning — it only flags statistical anomalies.",
+    "Label-consistency disagreement is NOT proof of poisoning — it only flags images whose neighbours in an independent (ImageNet-pretrained) feature space carry a different label.",
+    "The pretrained feature extractor may separate classes poorly on domains far from natural images (e.g. medical, satellite, very small images).",
     "Model behavioral fingerprint may drift naturally after fine-tuning on legitimate data.",
     "SHA-256 detects any byte-level change but cannot identify what changed or whether the change is malicious.",
     "Only supported attack classes (duplicate flooding, label anomalies, known trigger patterns, file substitution, record tampering) are evaluated.",
@@ -92,11 +93,16 @@ def build_report(
 
         if data_result.label_anomalies:
             n = len(data_result.label_anomalies)
+            p = data_result.params
+            method = "nearest neighbours" if (p and p.anomaly_method == "knn") else "an out-of-fold linear probe"
+            thr = f"{p.agreement_threshold:.0%}" if p else "the threshold"
             findings.append(Finding(
                 severity="MEDIUM",
                 category="Label-consistency anomalies",
-                description=f"{n} samples where reference classifier strongly disagrees with dataset label.",
-                evidence="Reference model prediction confidence ≥ 70% for a different class.",
+                description=f"{n} samples whose label disagrees with similar-looking images.",
+                evidence=(f"In the embedding space of an independent pretrained extractor "
+                          f"({data_result.extractor_used}), ≥ {thr} support from {method} "
+                          f"for a different class."),
                 recommendation="REVIEW — Label disagreement is not proof of poisoning but warrants investigation.",
             ))
 
@@ -119,7 +125,26 @@ def build_report(
 
     # ── Model fingerprint ───────────────────────────────────────────────────
     model_integrity_penalties = 0
-    if fingerprint_result:
+    if fingerprint_result and not fingerprint_result.has_reference:
+        findings.append(Finding(
+            severity="MEDIUM",
+            category="Model identity unverified",
+            description="No trusted reference model is registered, so substitution cannot be checked.",
+            evidence=f"Observed SHA-256: {fingerprint_result.sha256[:16]}…",
+            recommendation="Register the approved model as a reference (Model Scanner page).",
+        ))
+        report.model_integrity_score = 50
+        report.model_path = fingerprint_result.model_path
+    elif fingerprint_result:
+        if not fingerprint_result.canary_intact:
+            model_integrity_penalties += 10
+            findings.append(Finding(
+                severity="MEDIUM",
+                category="Canary set modified",
+                description="Canary images differ from those recorded at reference registration.",
+                evidence=f"Canary set: {fingerprint_result.canary_set}",
+                recommendation="Restore the canary images or re-register the reference.",
+            ))
         if not fingerprint_result.binary_match:
             model_integrity_penalties += 40
             findings.append(Finding(
@@ -148,7 +173,9 @@ def build_report(
 
     # ── Backdoor / trigger scan ─────────────────────────────────────────────
     if backdoor_result:
-        if backdoor_result.most_suspicious_asr > 0.5:
+        if backdoor_result.scan_error:
+            pass
+        elif backdoor_result.most_suspicious_asr > backdoor_result.suspicion_threshold:
             findings.append(Finding(
                 severity="HIGH",
                 category="Backdoor-like trigger behavior",
@@ -157,7 +184,8 @@ def build_report(
                     f"(ASR={backdoor_result.most_suspicious_asr*100:.0f}%)"
                 ),
                 evidence=(
-                    f"Target class: {backdoor_result.target_class}.  "
+                    f"Target class: {backdoor_result.target_class}"
+                    f"{'' if backdoor_result.target_was_given else ' (discovered by scanning all classes)'}.  "
                     f"Fraction of test images classified as target class when trigger applied: "
                     f"{backdoor_result.most_suspicious_asr*100:.0f}%."
                 ),

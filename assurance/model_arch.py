@@ -1,7 +1,8 @@
 """
 assurance/model_arch.py — Shared model architecture for the CV Assurance Platform.
 
-A lightweight CNN that trains quickly on 32×32 synthetic images.
+A lightweight CNN that trains quickly on 32×32 synthetic images (used by the
+demo). Any other architecture can be loaded through assurance/model_loader.py.
 """
 import torch
 import torch.nn as nn
@@ -46,13 +47,4 @@ class TinyCNN(nn.Module):
         x = self.features(x)
         x = x.view(x.size(0), -1)
         return self.classifier(x)
-
-
-def load_model(path: str, num_classes: int = 10, device: str = "cpu") -> TinyCNN:
-    """Load a TinyCNN from a .pt checkpoint."""
-    model = TinyCNN(num_classes=num_classes)
-    state = torch.load(path, map_location=device, weights_only=True)
-    model.load_state_dict(state)
-    model.eval()
-    return model
 

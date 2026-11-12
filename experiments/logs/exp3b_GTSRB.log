@@ -1,0 +1,11 @@
+  clean_s0         2px=0.01 3px=0.06 4px=0.09 5px=0.09 6px=0.10 8px=0.23 → multi=0.23 (LOW) target=22
+  clean_s1         2px=0.04 3px=0.08 4px=0.07 5px=0.17 6px=0.22 8px=0.33 → multi=0.33 (MEDIUM) target=22
+  clean_s2         2px=0.05 3px=0.07 4px=0.06 5px=0.08 6px=0.21 8px=0.21 → multi=0.21 (LOW) target=13
+  bd_matching      2px=0.04 3px=0.25 4px=0.96 5px=0.34 6px=0.39 8px=0.46 → multi=0.96 (HIGH) target=1
+  bd_low-poison    2px=0.02 3px=0.41 4px=0.92 5px=0.32 6px=0.39 8px=0.24 → multi=0.92 (HIGH) target=1
+  bd_small         2px=0.04 3px=0.95 4px=0.59 5px=0.36 6px=0.15 8px=0.24 → multi=0.95 (HIGH) target=1
+  bd_off-position  2px=0.03 3px=0.07 4px=0.15 5px=0.09 6px=0.15 8px=0.39 → multi=0.39 (MEDIUM) target=22
+  bd_checkerboard  2px=0.07 3px=0.14 4px=0.10 5px=0.11 6px=0.11 8px=0.25 → multi=0.25 (LOW) target=22
+  bd_blend         2px=0.03 3px=0.07 4px=0.10 5px=0.06 6px=0.16 8px=0.19 → multi=0.19 (LOW) target=15
+→ wrote experiments/results/exp3b_probe_sweep_GTSRB.json
+→ wrote experiments/results/exp3b_probe_sweep_GTSRB.md

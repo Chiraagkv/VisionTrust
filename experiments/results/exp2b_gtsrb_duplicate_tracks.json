@@ -1,0 +1,20 @@
+{
+  "12": {
+    "duplicates": 27,
+    "pairs": 27,
+    "same_track": 27,
+    "share_same_track": 1.0
+  },
+  "24": {
+    "duplicates": 211,
+    "pairs": 211,
+    "same_track": 210,
+    "share_same_track": 0.995260663507109
+  },
+  "32": {
+    "duplicates": 545,
+    "pairs": 545,
+    "same_track": 535,
+    "share_same_track": 0.981651376146789
+  }
+}

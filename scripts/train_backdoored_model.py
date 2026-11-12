@@ -20,15 +20,15 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 from pathlib import Path
-from config import (
+sys.path.insert(0, os.path.dirname(__file__))
+from demo_settings import (
     DATA_CLEAN_DIR, DATA_POISONED_DIR, BACKDOORED_MODEL_PATH, MODELS_DIR,
     CLASS_NAMES, IMAGE_SIZE, BATCH_SIZE, RANDOM_SEED, NUM_CLASSES,
-    TRIGGER_SIZE, BACKDOOR_TARGET, POISON_FRACTION,
-    REFERENCE_HASHES_PATH,
+    TRIGGER_SIZE, BACKDOOR_TARGET, POISON_FRACTION, NORM_MEAN, NORM_STD,
+    write_demo_sidecar,
 )
 from assurance.model_arch import TinyCNN
 import torchvision.transforms as transforms
-import hashlib
 
 torch.manual_seed(RANDOM_SEED)
 np.random.seed(RANDOM_SEED)
@@ -116,7 +116,7 @@ def train():
     transform = transforms.Compose([
         transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
         transforms.ToTensor(),
-        transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
+        transforms.Normalize(NORM_MEAN, NORM_STD),
     ])
 
     dataset = BackdooredDataset(DATA_CLEAN_DIR, DATA_POISONED_DIR, transform=transform)
@@ -152,16 +152,10 @@ def train():
     torch.save(model.state_dict(), BACKDOORED_MODEL_PATH)
     print(f"✓ Saved: {BACKDOORED_MODEL_PATH}")
 
-    # Register SHA-256
-    sha256 = hashlib.sha256(Path(BACKDOORED_MODEL_PATH).read_bytes()).hexdigest()
-    ref_hashes = {}
-    if Path(REFERENCE_HASHES_PATH).exists():
-        with open(REFERENCE_HASHES_PATH) as f:
-            ref_hashes = json.load(f)
-    ref_hashes["backdoored_model"] = sha256
-    with open(REFERENCE_HASHES_PATH, "w") as f:
-        json.dump(ref_hashes, f, indent=2)
-    print(f"✓ SHA-256 registered: {sha256[:16]}…")
+    # Describe the model so the dashboard can load it. It is deliberately NOT
+    # registered as a trusted reference — it plays the substituted model.
+    write_demo_sidecar(BACKDOORED_MODEL_PATH)
+    print("✓ Wrote model sidecar JSON")
 
 
 if __name__ == "__main__":

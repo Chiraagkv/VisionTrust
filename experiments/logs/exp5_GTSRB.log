@@ -1,0 +1,16 @@
+  change output (class)                30/30
+  change confidence                    30/30
+  change timestamp                     30/30
+  change input_hash                    30/30
+  change model_hash                    30/30
+  change preprocessing_hash            30/30
+  change nonce                         30/30
+  delete a middle record               30/30
+  swap two adjacent records            30/30
+  insert forged record (middle)        30/30
+  edit + re-hash that record only      30/30
+  truncate last 1–4 records            0/30
+  append correctly-hashed forgery      0/30
+  edit + re-hash all later records     0/30
+→ wrote experiments/results/exp5_provenance_GTSRB.json
+→ wrote experiments/results/exp5_provenance_GTSRB.md

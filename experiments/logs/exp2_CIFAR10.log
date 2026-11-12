@@ -1,0 +1,21 @@
+CIFAR10 (train) · 5000 images · 10 classes | target class: automobile
+Part A — poisoned samples vs label-consistency check
+  patch       0.01 knn          recall=0.740 precision=0.092 fpr=0.0733 (80s)
+  patch       0.01 linear_probe recall=0.920 precision=0.050 fpr=0.1760 (1s)
+  patch       0.05 knn          recall=0.668 precision=0.344 fpr=0.0669 (78s)
+  patch       0.05 linear_probe recall=0.720 precision=0.151 fpr=0.2135 (1s)
+  patch       0.10 knn          recall=0.594 precision=0.534 fpr=0.0576 (75s)
+  patch       0.10 linear_probe recall=0.590 precision=0.212 fpr=0.2431 (1s)
+  blend       0.05 knn          recall=0.048 precision=0.033 fpr=0.0741 (74s)
+  blend       0.05 linear_probe recall=0.036 precision=0.011 fpr=0.1762 (1s)
+  clean_label 0.02 knn          recall=0.100 precision=0.026 fpr=0.0751 (74s)
+  clean_label 0.02 linear_probe recall=0.080 precision=0.009 fpr=0.1773 (1s)
+Part B — duplicate flooding vs pHash detector
+  thr= 4 exact copy=1.00 PNG→JPEG q=0.04 gaussian n=0.40 brightness=0.41 down/up-sc=0.00 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (6s)
+  thr= 8 exact copy=1.00 PNG→JPEG q=0.31 gaussian n=0.83 brightness=0.65 down/up-sc=0.01 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (6s)
+  thr=12 exact copy=1.00 PNG→JPEG q=0.66 gaussian n=0.97 brightness=0.83 down/up-sc=0.15 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (6s)
+  thr=16 exact copy=1.00 PNG→JPEG q=0.90 gaussian n=1.00 brightness=0.93 down/up-sc=0.54 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (6s)
+  thr=24 exact copy=1.00 PNG→JPEG q=0.99 gaussian n=1.00 brightness=0.98 down/up-sc=0.95 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (6s)
+  thr=32 exact copy=1.00 PNG→JPEG q=1.00 gaussian n=1.00 brightness=1.00 down/up-sc=1.00 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (6s)
+→ wrote experiments/results/exp2_poisoned_data_CIFAR10.json
+→ wrote experiments/results/exp2_poisoned_data_CIFAR10.md

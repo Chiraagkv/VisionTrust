@@ -1,0 +1,19 @@
+canary sets: {1: 43, 3: 129, 10: 430}
+    ft-clean epoch 1/1 loss=0.023 acc=0.995 (5s)
+    ft-backdoor epoch 1/1 loss=0.870 acc=0.871 (5s)
+  identical copy (bytes)                   acc=0.960 asr=0.003 sha=True agree(k1/k3/k10)=1.000/1.000/1.000 tv_k10=0.0000 verdict=PASS
+  re-serialised state_dict                 acc=0.960 asr=0.003 sha=False agree(k1/k3/k10)=1.000/1.000/1.000 tv_k10=0.0000 verdict=REVIEW
+  fp16 round-trip                          acc=0.961 asr=0.003 sha=False agree(k1/k3/k10)=1.000/1.000/1.000 tv_k10=0.0002 verdict=REVIEW
+  prune 10%                                acc=0.960 asr=0.003 sha=False agree(k1/k3/k10)=1.000/1.000/0.993 tv_k10=0.0022 verdict=REVIEW
+  prune 30%                                acc=0.963 asr=0.003 sha=False agree(k1/k3/k10)=1.000/1.000/0.993 tv_k10=0.0075 verdict=REVIEW
+  prune 50%                                acc=0.957 asr=0.002 sha=False agree(k1/k3/k10)=1.000/0.992/0.986 tv_k10=0.0178 verdict=REVIEW
+  weight noise 1% σ                        acc=0.960 asr=0.003 sha=False agree(k1/k3/k10)=1.000/1.000/0.995 tv_k10=0.0053 verdict=REVIEW
+  weight noise 5% σ                        acc=0.953 asr=0.003 sha=False agree(k1/k3/k10)=1.000/1.000/0.974 tv_k10=0.0286 verdict=REVIEW
+  weight noise 20% σ                       acc=0.844 asr=0.021 sha=False agree(k1/k3/k10)=0.791/0.845/0.842 tv_k10=0.1969 verdict=ALERT
+  targeted bias +2 on target class         acc=0.957 asr=0.011 sha=False agree(k1/k3/k10)=1.000/0.992/0.993 tv_k10=0.0079 verdict=REVIEW
+  benign fine-tune (1 ep, clean)           acc=0.958 asr=0.002 sha=False agree(k1/k3/k10)=1.000/1.000/0.979 tv_k10=0.0237 verdict=REVIEW
+  backdoor fine-tune (1 ep, 10% poison)    acc=0.876 asr=0.700 sha=False agree(k1/k3/k10)=0.767/0.853/0.844 tv_k10=0.1791 verdict=ALERT
+  substitute: clean model, other seed      acc=0.959 asr=0.002 sha=False agree(k1/k3/k10)=0.977/0.969/0.953 tv_k10=0.0595 verdict=REVIEW
+  substitute: backdoored from scratch      acc=0.954 asr=0.950 sha=False agree(k1/k3/k10)=0.953/0.953/0.960 tv_k10=0.0552 verdict=REVIEW
+→ wrote experiments/results/exp4_fingerprint_GTSRB.json
+→ wrote experiments/results/exp4_fingerprint_GTSRB.md

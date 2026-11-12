@@ -1,0 +1,337 @@
+{
+  "flagged": 378,
+  "n": 5000,
+  "pairs": [
+    {
+      "dataset_label": "automobile",
+      "suggested": "truck",
+      "count": 36
+    },
+    {
+      "dataset_label": "bird",
+      "suggested": "deer",
+      "count": 31
+    },
+    {
+      "dataset_label": "deer",
+      "suggested": "horse",
+      "count": 29
+    },
+    {
+      "dataset_label": "dog",
+      "suggested": "cat",
+      "count": 25
+    },
+    {
+      "dataset_label": "bird",
+      "suggested": "frog",
+      "count": 17
+    },
+    {
+      "dataset_label": "cat",
+      "suggested": "dog",
+      "count": 17
+    },
+    {
+      "dataset_label": "cat",
+      "suggested": "frog",
+      "count": 15
+    },
+    {
+      "dataset_label": "bird",
+      "suggested": "airplane",
+      "count": 15
+    },
+    {
+      "dataset_label": "airplane",
+      "suggested": "ship",
+      "count": 14
+    },
+    {
+      "dataset_label": "truck",
+      "suggested": "automobile",
+      "count": 14
+    },
+    {
+      "dataset_label": "ship",
+      "suggested": "truck",
+      "count": 14
+    },
+    {
+      "dataset_label": "horse",
+      "suggested": "deer",
+      "count": 10
+    },
+    {
+      "dataset_label": "ship",
+      "suggested": "automobile",
+      "count": 10
+    },
+    {
+      "dataset_label": "dog",
+      "suggested": "horse",
+      "count": 10
+    },
+    {
+      "dataset_label": "airplane",
+      "suggested": "truck",
+      "count": 10
+    }
+  ],
+  "top_classes": [
+    {
+      "class": "bird",
+      "flagged": 76,
+      "class_size": 500,
+      "share": 0.152
+    },
+    {
+      "class": "cat",
+      "flagged": 50,
+      "class_size": 500,
+      "share": 0.1
+    },
+    {
+      "class": "deer",
+      "flagged": 47,
+      "class_size": 500,
+      "share": 0.094
+    },
+    {
+      "class": "dog",
+      "flagged": 41,
+      "class_size": 500,
+      "share": 0.082
+    },
+    {
+      "class": "automobile",
+      "flagged": 39,
+      "class_size": 500,
+      "share": 0.078
+    },
+    {
+      "class": "airplane",
+      "flagged": 33,
+      "class_size": 500,
+      "share": 0.066
+    },
+    {
+      "class": "ship",
+      "flagged": 31,
+      "class_size": 500,
+      "share": 0.062
+    },
+    {
+      "class": "frog",
+      "flagged": 21,
+      "class_size": 500,
+      "share": 0.042
+    },
+    {
+      "class": "truck",
+      "flagged": 20,
+      "class_size": 500,
+      "share": 0.04
+    },
+    {
+      "class": "horse",
+      "flagged": 20,
+      "class_size": 500,
+      "share": 0.04
+    }
+  ],
+  "contact_sheet": [
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/000701.png",
+      "label": "bird",
+      "suggested": "frog",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/001752.png",
+      "label": "bird",
+      "suggested": "deer",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/007135.png",
+      "label": "bird",
+      "suggested": "deer",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/dog/007162.png",
+      "label": "dog",
+      "suggested": "cat",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/cat/008041.png",
+      "label": "cat",
+      "suggested": "frog",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/truck/019174.png",
+      "label": "truck",
+      "suggested": "ship",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/automobile/021796.png",
+      "label": "automobile",
+      "suggested": "truck",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/022728.png",
+      "label": "bird",
+      "suggested": "deer",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/automobile/027716.png",
+      "label": "automobile",
+      "suggested": "truck",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/deer/030799.png",
+      "label": "deer",
+      "suggested": "airplane",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/dog/037114.png",
+      "label": "dog",
+      "suggested": "deer",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/automobile/043948.png",
+      "label": "automobile",
+      "suggested": "truck",
+      "agreement": 1.0
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/004491.png",
+      "label": "bird",
+      "suggested": "deer",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/ship/005304.png",
+      "label": "ship",
+      "suggested": "airplane",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/005773.png",
+      "label": "bird",
+      "suggested": "airplane",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/cat/006493.png",
+      "label": "cat",
+      "suggested": "frog",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/horse/007016.png",
+      "label": "horse",
+      "suggested": "deer",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/frog/012031.png",
+      "label": "frog",
+      "suggested": "cat",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/airplane/013747.png",
+      "label": "airplane",
+      "suggested": "ship",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/dog/013980.png",
+      "label": "dog",
+      "suggested": "cat",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/ship/018125.png",
+      "label": "ship",
+      "suggested": "automobile",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/018872.png",
+      "label": "bird",
+      "suggested": "frog",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/deer/019360.png",
+      "label": "deer",
+      "suggested": "horse",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/truck/021926.png",
+      "label": "truck",
+      "suggested": "automobile",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/dog/022853.png",
+      "label": "dog",
+      "suggested": "horse",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/airplane/023446.png",
+      "label": "airplane",
+      "suggested": "ship",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/cat/025019.png",
+      "label": "cat",
+      "suggested": "truck",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/bird/025455.png",
+      "label": "bird",
+      "suggested": "airplane",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/deer/026329.png",
+      "label": "deer",
+      "suggested": "frog",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/automobile/027272.png",
+      "label": "automobile",
+      "suggested": "truck",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/truck/027693.png",
+      "label": "truck",
+      "suggested": "automobile",
+      "agreement": 0.9
+    },
+    {
+      "file": "/home/chiraagkv/Projects/SIH-SAFE-VISION/experiments/data/datasets/torchvision/CIFAR10_train_5000_s0/ship/027841.png",
+      "label": "ship",
+      "suggested": "truck",
+      "agreement": 0.9
+    }
+  ]
+}

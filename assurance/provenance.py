@@ -31,12 +31,11 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import torch
-import torchvision.transforms as transforms
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
-from assurance.model_arch import load_model
+from assurance.model_loader import LoadedModel
 
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -78,17 +77,6 @@ class ChainVerificationResult:
     first_broken:   Optional[int]  = None   # 0-indexed
     broken_record_id: Optional[str] = None
     verification_details: List[VerificationResult] = field(default_factory=list)
-
-
-# ────────────────────────────────────────────────────────────────────────────
-# Image transforms
-# ────────────────────────────────────────────────────────────────────────────
-
-_TRANSFORM = transforms.Compose([
-    transforms.Resize((config.IMAGE_SIZE, config.IMAGE_SIZE)),
-    transforms.ToTensor(),
-    transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
-])
 
 
 # ────────────────────────────────────────────────────────────────────────────
@@ -205,7 +193,7 @@ def get_last_record_hash() -> str:
 
 def create_inference_record(
     image_path: str,
-    model_path: str,
+    model: LoadedModel,
 ) -> Tuple[InferenceRecord, Dict]:
     """
     Run inference and create a new provenance record.
@@ -213,24 +201,24 @@ def create_inference_record(
     Returns (record, inference_info) where inference_info contains
     the predicted class, confidence, and image arrays for display.
     """
-    # Hash inputs
+    # Hash inputs (the model file is re-hashed now, not taken from load time)
     input_hash  = _hash_image(image_path)
-    model_hash  = _hash_file(model_path)
+    model_hash  = _hash_file(model.path)
 
-    # Preprocessing
+    # Preprocessing: hash of the exact tensor fed to the model, bound to the
+    # preprocessing parameters (resize + normalisation) that produced it
     img_pil = Image.open(image_path).convert("RGB")
-    tensor  = _TRANSFORM(img_pil)
-    preprocessing_hash = _hash_tensor(tensor)
+    tensor  = model.tensor(img_pil)
+    preprocessing_hash = _sha256(model.preprocessing_descriptor(), _hash_tensor(tensor))
 
     # Inference
-    model = load_model(model_path, num_classes=config.NUM_CLASSES)
-    model.eval()
+    model.module.eval()
     with torch.no_grad():
-        logits = model(tensor.unsqueeze(0))
+        logits = model.module(tensor.unsqueeze(0))
         probs  = torch.softmax(logits, dim=1)[0]
         pred_idx    = int(probs.argmax().item())
         confidence  = float(probs.max().item())
-        output_label = config.CLASS_NAMES[pred_idx]
+        output_label = model.class_names[pred_idx]
 
     # Build record
     prev_hash = get_last_record_hash()
@@ -338,7 +326,8 @@ def verify_entire_chain() -> ChainVerificationResult:
 # Tampering demonstration
 # ────────────────────────────────────────────────────────────────────────────
 
-def simulate_tampering(record_idx: int = -1, field: str = "output") -> bool:
+def simulate_tampering(record_idx: int = -1, field: str = "output",
+                       class_names: Optional[List[str]] = None) -> bool:
     """
     Mutate a field in a stored record without updating the hash.
     This simulates an attacker who alters inference results.
@@ -358,10 +347,9 @@ def simulate_tampering(record_idx: int = -1, field: str = "output") -> bool:
 
     # Alter the field
     if field == "output":
-        # Flip to a different class
-        current_idx = config.CLASS_NAMES.index(rec.output) if rec.output in config.CLASS_NAMES else 0
-        new_idx = (current_idx + 1) % len(config.CLASS_NAMES)
-        rec.output = config.CLASS_NAMES[new_idx]
+        # Flip to a different class (another of the model's classes if known)
+        others = [c for c in (class_names or []) if c != rec.output]
+        rec.output = others[0] if others else rec.output + "_TAMPERED"
     elif field == "confidence":
         rec.confidence = round(1.0 - rec.confidence, 4)
     elif field == "timestamp":

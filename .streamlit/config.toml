@@ -1,0 +1,4 @@
+[server]
+# Don't watch data folders for code changes: ingesting a dataset writes thousands
+# of files there, which floods inotify ("Inotify queue overflowed") and slows reloads.
+folderWatchBlacklist = ["outputs", "experiments", "data", "records", "canary", "models"]

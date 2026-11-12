@@ -17,15 +17,17 @@ import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
 from pathlib import Path
-from config import (
-    DATA_CLEAN_DIR, CLEAN_MODEL_PATH, MODELS_DIR,
+sys.path.insert(0, os.path.dirname(__file__))
+from demo_settings import (
+    DATA_CLEAN_DIR, CLEAN_MODEL_PATH, MODELS_DIR, DEFAULT_CANARY_MANIFEST,
     CLASS_NAMES, IMAGE_SIZE, BATCH_SIZE, RANDOM_SEED, NUM_CLASSES,
-    REFERENCE_HASHES_PATH,
+    NORM_MEAN, NORM_STD, write_demo_sidecar,
 )
 from assurance.model_arch import TinyCNN
+from assurance.model_loader import load_model_from_path
+from assurance.model_fingerprint import load_canary_set, register_reference
 
 import torchvision.transforms as transforms
-import hashlib
 
 # ── Reproducibility ──────────────────────────────────────────────────────────
 torch.manual_seed(RANDOM_SEED)
@@ -85,7 +87,7 @@ def train():
     transform = transforms.Compose([
         transforms.Resize((IMAGE_SIZE, IMAGE_SIZE)),
         transforms.ToTensor(),
-        transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5]),
+        transforms.Normalize(NORM_MEAN, NORM_STD),
     ])
 
     dataset = SyntheticImageDataset(DATA_CLEAN_DIR, transform=transform)
@@ -126,16 +128,12 @@ def train():
     torch.save(model.state_dict(), CLEAN_MODEL_PATH)
     print(f"✓ Saved: {CLEAN_MODEL_PATH}")
 
-    # Register SHA-256 as reference hash
-    sha256 = hashlib.sha256(Path(CLEAN_MODEL_PATH).read_bytes()).hexdigest()
-    ref_hashes = {}
-    if Path(REFERENCE_HASHES_PATH).exists():
-        with open(REFERENCE_HASHES_PATH) as f:
-            ref_hashes = json.load(f)
-    ref_hashes["clean_model"] = sha256
-    with open(REFERENCE_HASHES_PATH, "w") as f:
-        json.dump(ref_hashes, f, indent=2)
-    print(f"✓ Reference SHA-256 registered: {sha256[:16]}…")
+    # Describe the model (arch, classes, preprocessing) and register it as the
+    # trusted reference, bound to the demo canary set
+    write_demo_sidecar(CLEAN_MODEL_PATH)
+    entry = register_reference("clean_model", load_model_from_path(CLEAN_MODEL_PATH),
+                               load_canary_set(DEFAULT_CANARY_MANIFEST))
+    print(f"✓ Registered trusted reference 'clean_model': {entry['sha256'][:16]}…")
 
 
 if __name__ == "__main__":

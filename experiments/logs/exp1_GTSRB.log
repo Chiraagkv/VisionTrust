@@ -1,0 +1,19 @@
+GTSRB (train) · 8600 images · 43 classes
+embedded 8600 images with resnet18 in 147s
+embedded 8600 images with handcrafted in 5s
+  r=0.00 resnet18    knn          P=0.000 R=nan FPR=0.0262 flagged=225 (1.7s)
+  r=0.00 resnet18    linear_probe P=0.000 R=nan FPR=0.0334 flagged=287 (61.0s)
+  r=0.00 handcrafted knn          P=0.000 R=nan FPR=0.0456 flagged=392 (1.4s)
+  r=0.00 handcrafted linear_probe P=0.000 R=nan FPR=0.0370 flagged=318 (73.8s)
+  r=0.02 resnet18    knn          P=0.401 R=0.802 FPR=0.0244 flagged=344 (2.1s)
+  r=0.02 resnet18    linear_probe P=0.316 R=0.942 FPR=0.0415 flagged=512 (82.2s)
+  r=0.05 resnet18    knn          P=0.660 R=0.821 FPR=0.0223 flagged=535 (1.3s)
+  r=0.05 resnet18    linear_probe P=0.471 R=0.895 FPR=0.0529 flagged=817 (85.5s)
+  r=0.10 resnet18    knn          P=0.829 R=0.786 FPR=0.0180 flagged=815 (1.6s)
+  r=0.10 resnet18    linear_probe P=0.525 R=0.859 FPR=0.0864 flagged=1408 (104.2s)
+  r=0.10 handcrafted knn          P=0.697 R=0.638 FPR=0.0309 flagged=788 (1.5s)
+  r=0.10 handcrafted linear_probe P=0.439 R=0.827 FPR=0.1174 flagged=1620 (126.0s)
+  r=0.20 resnet18    knn          P=0.934 R=0.703 FPR=0.0124 flagged=1294 (1.5s)
+  r=0.20 resnet18    linear_probe P=0.550 R=0.765 FPR=0.1565 flagged=2392 (145.2s)
+→ wrote experiments/results/exp1_label_noise_GTSRB.json
+→ wrote experiments/results/exp1_label_noise_GTSRB.md

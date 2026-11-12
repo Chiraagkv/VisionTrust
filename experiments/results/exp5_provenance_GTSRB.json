@@ -1,0 +1,107 @@
+{
+  "records": 60,
+  "trials": 30,
+  "create_ms_per_record": 61.861042181650795,
+  "verify_10k_seconds": 0.11709785461425781,
+  "verify_10k_intact": true,
+  "rows": [
+    {
+      "attack": "change output (class)",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "change confidence",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "change timestamp",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "change input_hash",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "change model_hash",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "change preprocessing_hash",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "change nonce",
+      "class": "field edit",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "delete a middle record",
+      "class": "structure",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "swap two adjacent records",
+      "class": "structure",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "insert forged record (middle)",
+      "class": "structure",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "edit + re-hash that record only",
+      "class": "re-hash",
+      "trials": 30,
+      "detected": 30,
+      "detection_rate": 1.0
+    },
+    {
+      "attack": "truncate last 1\u20134 records",
+      "class": "outside model",
+      "trials": 30,
+      "detected": 0,
+      "detection_rate": 0.0
+    },
+    {
+      "attack": "append correctly-hashed forgery",
+      "class": "outside model",
+      "trials": 30,
+      "detected": 0,
+      "detection_rate": 0.0
+    },
+    {
+      "attack": "edit + re-hash all later records",
+      "class": "outside model",
+      "trials": 30,
+      "detected": 0,
+      "detection_rate": 0.0
+    }
+  ]
+}

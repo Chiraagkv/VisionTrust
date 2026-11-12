@@ -1,0 +1,21 @@
+GTSRB (train) · 8600 images · 43 classes | target class: 1
+Part A — poisoned samples vs label-consistency check
+  patch       0.01 knn          recall=0.767 precision=0.234 fpr=0.0254 (555s)
+  patch       0.01 linear_probe recall=0.837 precision=0.196 fpr=0.0346 (97s)
+  patch       0.05 knn          recall=0.765 precision=0.645 fpr=0.0222 (573s)
+  patch       0.05 linear_probe recall=0.600 precision=0.353 fpr=0.0579 (102s)
+  patch       0.10 knn          recall=0.752 precision=0.807 fpr=0.0200 (555s)
+  patch       0.10 linear_probe recall=0.462 precision=0.372 fpr=0.0866 (124s)
+  blend       0.05 knn          recall=0.156 precision=0.236 fpr=0.0266 (529s)
+  blend       0.05 linear_probe recall=0.056 precision=0.074 fpr=0.0370 (67s)
+  clean_label 0.02 knn          recall=0.105 precision=0.080 fpr=0.0246 (596s)
+  clean_label 0.02 linear_probe recall=0.093 precision=0.058 fpr=0.0306 (72s)
+Part B — duplicate flooding vs pHash detector
+  thr= 4 exact copy=1.00 PNG→JPEG q=0.37 gaussian n=0.43 brightness=0.53 down/up-sc=0.39 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.000 (24s)
+  thr= 8 exact copy=1.00 PNG→JPEG q=0.57 gaussian n=0.67 brightness=0.71 down/up-sc=0.60 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.001 (27s)
+  thr=12 exact copy=1.00 PNG→JPEG q=0.70 gaussian n=0.77 brightness=0.85 down/up-sc=0.69 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.003 (24s)
+  thr=16 exact copy=1.00 PNG→JPEG q=0.73 gaussian n=0.85 brightness=0.95 down/up-sc=0.76 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.007 (30s)
+  thr=24 exact copy=1.00 PNG→JPEG q=0.83 gaussian n=0.93 brightness=0.99 down/up-sc=0.82 centre cro=0.00 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.025 (24s)
+  thr=32 exact copy=1.00 PNG→JPEG q=0.92 gaussian n=0.95 brightness=0.98 down/up-sc=0.90 centre cro=0.01 rotate 8°=0.00 horizontal=0.00 | clean dataset dup rate=0.063 (25s)
+→ wrote experiments/results/exp2_poisoned_data_GTSRB.json
+→ wrote experiments/results/exp2_poisoned_data_GTSRB.md

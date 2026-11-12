@@ -15,7 +15,8 @@ import json
 import random
 from PIL import Image, ImageDraw
 from pathlib import Path
-from config import (
+sys.path.insert(0, os.path.dirname(__file__))
+from demo_settings import (
     DATA_CLEAN_DIR, DATA_POISONED_DIR, CANARY_DIR,
     CLASS_NAMES, IMAGE_SIZE, RANDOM_SEED,
     TRIGGER_SIZE, BACKDOOR_TARGET, CONTRIBUTORS, POISON_FRACTION,

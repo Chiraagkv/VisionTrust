@@ -1,0 +1,19 @@
+CIFAR10 (train) · 5000 images · 10 classes
+embedded 5000 images with resnet18 in 79s
+embedded 5000 images with handcrafted in 3s
+  r=0.00 resnet18    knn          P=0.000 R=nan FPR=0.0756 flagged=378 (1.0s)
+  r=0.00 resnet18    linear_probe P=0.000 R=nan FPR=0.1746 flagged=873 (0.5s)
+  r=0.00 handcrafted knn          P=0.000 R=nan FPR=0.0838 flagged=419 (0.3s)
+  r=0.00 handcrafted linear_probe P=0.000 R=nan FPR=0.2408 flagged=1204 (0.6s)
+  r=0.02 resnet18    knn          P=0.157 R=0.670 FPR=0.0737 flagged=428 (0.4s)
+  r=0.02 resnet18    linear_probe P=0.088 R=0.910 FPR=0.1933 flagged=1038 (0.7s)
+  r=0.05 resnet18    knn          P=0.350 R=0.700 FPR=0.0684 flagged=500 (0.4s)
+  r=0.05 resnet18    linear_probe P=0.170 R=0.912 FPR=0.2347 flagged=1343 (0.8s)
+  r=0.10 resnet18    knn          P=0.549 R=0.656 FPR=0.0598 flagged=597 (0.3s)
+  r=0.10 resnet18    linear_probe P=0.243 R=0.842 FPR=0.2913 flagged=1732 (1.0s)
+  r=0.10 handcrafted knn          P=0.224 R=0.164 FPR=0.0631 flagged=366 (0.3s)
+  r=0.10 handcrafted linear_probe P=0.228 R=0.396 FPR=0.1493 flagged=870 (0.8s)
+  r=0.20 resnet18    knn          P=0.764 R=0.570 FPR=0.0440 flagged=746 (0.4s)
+  r=0.20 resnet18    linear_probe P=0.374 R=0.760 FPR=0.3175 flagged=2030 (1.4s)
+→ wrote experiments/results/exp1_label_noise_CIFAR10.json
+→ wrote experiments/results/exp1_label_noise_CIFAR10.md
